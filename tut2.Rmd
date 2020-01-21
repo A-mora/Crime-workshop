@@ -1,0 +1,60 @@
+---
+title: "Exploratory Data Analysis using the Crime Survey for England and Wales"
+author: "Ana Morales"
+date: "`r Sys.Date()`"
+fontsize: 12pt
+output: 
+html_document:
+    toc: true
+    toc_depth: 2
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+In this practical you will be analysing a sample of the teaching dataset  of the Crime Survey for England and Wales available [here](https://beta.ukdataservice.ac.uk/datacatalogue/studies/study?id=7911) from the [UK Data Service](https://www.ukdataservice.ac.uk/). But you can access it from the folder **Crime_workshop** in the "C:\Work" folder of the PC in the cluster.
+
+## 1. Before we start
+
+#### 1.1. Define a working directory
+
+You can use the directory  on University-owned machines, as it provides a stable drive to work on ("C:\Work"). If you're using your own machine, you can specify any folder you find convenient.
+
+Also note that you need to take your data and results with you and delete what you store on the C-drive after this session (if you are not using your own laptop).  
+
+
+#### 1.2. Open a new Script
+
+First, open a new script in R studio and save it in your working directory, so you will be able to access this script at a later time if you want to revise or modify a code.  
+
+In R Studio:  
+
+Go to File... New File.... R script
+  
+
+#### 1.3. Load the packages
+
+Remember to load the packages. We will be using `tidyverse` and `haven`
+
+```{r}
+
+library(haven)
+library(tidyverse)
+```
+
+
+
+
+
+As a first step in a research project we need to start with a purpose:
+
+## Central tendency measures
+
+## Visual exploration
+
+## Association between variables
+# Correlation
+# Crosstab
+# Visual exploration
+
