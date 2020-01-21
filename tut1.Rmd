@@ -13,22 +13,40 @@ html_document:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## R Markdown
+## 1. Introduction
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+This is the first tutorial of the workshop. This is for you to familiarise yourself with R, R Studio and the console.
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+### 1.1. Installing R and R Studio
 
-```{r cars}
-summary(cars)
+The PC in the university cluster have R and R studio already installed, so this task is for installing these software **in your own computer or laptop**. You can skip this section if you already have R and R studio installed.
+
+We will be using R Studio, but R studio can only work if R is already installed, so we need to have both softwares installed. 
+
+- **Installing R**
+
+R is free and can be installed in Windows, Mac, Linux. Go to the [R project website](https://www.r-project.org/). Once there click on **Download R** and select a CRAN Mirror. For the UK you can choose between the 	University of Bristol
+Imperial College London, either of them would do the job.  
+
+
+Now, follow the instructions and you will have R installed in your own computer.  
+
+- **Installing R Studio**
+
+Go to the [R Studio website](https://rstudio.com/products/rstudio/download/), choose the free version and download the file according to your operating system.
+
+Once you have installed both R and R Studio, you don't need to interat at all with R. You can do everything you need from within R Studio.
+
+```{r}
+
 ```
 
-## Including Plots
+## 
 
 You can also embed plots, for example:
 
-```{r pressure, echo=FALSE}
-plot(pressure)
+```{, echo=FALSE}
+
 ```
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
