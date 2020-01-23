@@ -45,11 +45,149 @@ library(tidyverse)
 
 
 
-
-
 As a first step in a research project we need to start with a purpose:
 
-## Central tendency measures
+
+
+
+## Central tendency measures (change title)
+
+### 2. Import the data into R
+
+Import the dataset called hse_data.dta into the console using your desired method (code or point and click). This dataset can only be imported if you have loaded the package `haven`. 
+
+```{r, echo=FALSE}
+setwd("C:/Users/Amanda/Desktop/anita/Crime-workshop")
+
+csew <- read_dta("CSEW/UKDA-7911-stata/stata/stata11/csew1314_teaching_eul2.dta")
+
+```
+
+```{r, eval=FALSE}
+
+csew<-read_dta(".dta") 
+
+```
+
+
+
+### 3. Data exploration
+
+- *3.1 Dataset exploration*
+
+**Task 1**: Inspect the dataset, use the function View()
+
+```{r, eval=FALSE}
+
+View(csew)
+
+```
+
+You can also use the function `head()` that shows you the first 6 rows of the data set, this function is usefull to have a look at the data within the console, specially when you havelarge datasets.
+
+There is also an antithesis function to `head()` called `tail()`. Can you guess what does that function do?   
+
+(**Hint**: you can run the code in the console and see it by yourself, or a wuick search in google may also help.)
+
+```{r, echo=FALSE}
+head (csew)
+```
+
+Data obtained from the UK Data Service always came with a wealth of resources and user guides that help us to understand the data, so I would always encourgae you to check the documentation associated with the data used.These documentation also includes information about the sample, the questionnaire, the variables availables and how to use them.   
+
+Sadly, this is not always the case with data from different sources, in those cases the initial exploration of the data is probably our main source of information about the data itself.
+
+Now that we got the data in the console, let's start with our data exploration:
+
+
+*Task 1.1* How many observations does the data have?____________
+
+
+*Task 1.2* How many variables?______________
+
+
+
+
+Another function used to get a "glimpse" at your data is using the function `glimpse()`.
+
+
+
+```{r, echo=FALSE}
+
+glimpse(csew)
+
+
+```
+
+
+Note the data type of almost all variables is `<dbl+lbl>`.  These are labelled variables in the haven package. It's the way to identify variables with labels from Stata.
+
+
+
+- *3.2 Variable exploration*  
+
+
+Let's use another function to have a closer look, this time at the variables. Let's use this with the variable 'sex'
+```{r}
+
+attributes(csew$sex)
+
+```
+
+
+We have the `$class` attribute which says that `sex` is a haven_labelled type. We also have the `$labels` attribute which are the Value Labels of the variable `sex`: 1 Man, 2 Woman
+
+We could have also used `class(hse$sex)` to check the type of the variable.
+
+
+**Task 2** Inspect other variables with attributes() and class()
+
+
+
+
+## 4. Understanding our data
+
+Now that we have had a look at what variables we have, we need to start looking for other aspects of the exploratory data analysis (EDA) process. These are some of the things to look out for: 
+
+- Checking for outliers (unusual values)
+- Looking at the distribution of the variables
+- Exploring some relationships and patterns
+- Checking for missing cases
+
+
+Here we start the data exploration of the categorical variables (also called factors).
+
+Let's see what happens when we ask for a frequency table
+
+```{r}
+
+table(csew$sex)
+```
+
+Right now, the variable does not contain any visible label that help us to identify each category of response, although we know the underlying values of each label thanks to the `attribute` function.
+
+This is one of the inconveniences of working with data with labels in R, but it is good for you to know what to do in this case.
+
+
+Although we can use the data as it is, I prefer to see the values of the variables, so we are going to change the class of some varibles to make them easier to analyse.
+
+
+We can use the function `as_factor()` from the package **haven** to convert the variable into a factor variable (equivalent to categorical variable). Copy the following code in your console.  
+
+```{r}
+
+csew$sexf<-as_factor(csew$sex) 
+table(csew$sexf)
+```
+
+Here we created a new variable with the suffix "f" (for factor). 
+
+
+*Task 3:* Convert the following variables into factor using the example code before.
+
+
+
+
 
 ## Visual exploration
 
