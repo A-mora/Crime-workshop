@@ -73,7 +73,7 @@ csew<-read_dta(".dta")
 
 ### 3. Data exploration
 
-- *3.1 Dataset exploration*
+- **3.1 Dataset exploration**
 
 **Task 1**: Inspect the dataset, use the function View()
 
@@ -124,7 +124,7 @@ Note the data type of almost all variables is `<dbl+lbl>`.  These are labelled v
 
 
 
-- *3.2 Variable exploration*  
+- **3.2 Variable exploration**  
 
 
 Let's use another function to have a closer look, this time at the variables. Let's use this with the variable 'sex'
@@ -184,6 +184,105 @@ Here we created a new variable with the suffix "f" (for factor).
 
 
 *Task 3:* Convert the following variables into factor using the example code before.
+
+- **Univariate analysis**
+
+
+We can use a series of descriptive statistics and graphs to help us to undertand and make sense of the data.
+
+Univariate exploration is when we look at the characteristics of each variable of interest independently
+
+
+**Univariate Descriptive statistic for continuous (numeric) data**
+
+We can get summries of the main statistics using the base function `summary()`. This function gives us the minimum and maximun values, the mean, median and the quartiles.   
+
+It is really useful to check for extreme values. Let's have a go
+
+```{r}
+#This uses basic functions from R
+summary(csew$age)
+```
+
+`summary()` does not gives any measure of the spread of the, we can use other functions available in base R for that `sd()` for standard deviation.
+
+```{r}
+# Standard deviation
+sd(csew$age)
+
+```
+
+so far we have used two different functions to 
+
+```{r}
+
+#using function from the package dplyr (tidyverse)
+csew %>%
+  summarise(mean= mean(age),
+            sd= sd(age),
+            median = median(age),
+            min = min(age),
+            max = max(age)) 
+
+```
+
+
+The distribution of the variable age seems reasonable, the mean and the median are very similar. 
+
+The standard deviation shows how spread the data are. A standard deviation of 57.68 is quite high, which might indicate a lot of variation in the distribution of age. This is clearly hinting that there is something odd about the variable.
+
+We also saw that the maximum value for age is **999**, which is clearly a number out of range; Nobody can live for 999 years! This is also a good way to check for outliers.
+
+In certain cases the maximun values can be less obvious, so it would be difficult to determine whether there are outliers or data errors, that is why we need more visual exploration to check this.
+
+
+
+## subsetting (filter)
+
+There are a lot of small children children in this dataset (4354 younger than 5), we saw this using the  `table(hse_data$age[hse_data$age<5])` which gives the total number of children younger than 5.
+
+
+
+
+
+# Subsetting observations -Getting statistics for a sample of the data
+sum(csew$age[csew$age<5])
+```
+
+```{r}
+
+#using function from the package dplyr (tidyverse)
+hse_data%>%
+  summarise(mean= mean(age),
+            sd= sd(age),
+            median = median(age),
+            quant) 
+
+# Subsetting observations -Getting statistics for a sample of the data
+hse_data %>%
+  filter(age <5) %>%
+  summarise(younger_5 = sum(age))
+              
+ 
+
+
+```
+
+
+
+
+*Task 4:* Get summary statistics for the variables height, BMI and weight. Use the subsetting operation for exploring certain groups.
+
+
+*Task 4.1* Write down a short description of the main statistics you've obtained
+
+
+
+*Task 4.2* Is there any unusual value in the variables you have analysed?
+
+
+
+
 
 
 
