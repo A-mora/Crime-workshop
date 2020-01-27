@@ -68,7 +68,7 @@ csew <- read_dta("CSEW/UKDA-7911-stata/stata/stata11/csew1314_teaching_eul2.dta"
 ```{r, eval=FALSE}
 # Do it yourself
 
- 
+csew<- 
 
 ```
 
@@ -93,7 +93,7 @@ There is also an antithesis function to `head()` called `tail()`. Can you guess 
 (**Hint**: you can run the code in the console and see it by yourself, or a quick search in Google may also help.)
 
 ```{r, eval=FALSE}
-head (csew)
+head(csew)
 ```
 
 Data obtained from the UK Data Service always come with a wealth of resources and user guides that help us to understand the data, so I would always encourage you to check the documentation associated with the data used.This documentation also includes information about the sample, the questionnaire, the variables available and how to use them.   
@@ -350,13 +350,13 @@ In certain cases the maximum values can be less obvious, so it would be difficul
 **Diagnostic, critical points regarding age**
 
 - high standard deviation
-- Implausible values (error?, missing?, outliers?)
+- Implausible values (error?, missing values?, outliers?)
 
 **Actions**
 
 - both problems might be related
 - check 999 values and deal with them accordingly
-- check if SD changes after 999 values are took into account
+- check if SD changes after 999 values are taken into account
 
 ```{r}
 class(csew$age)
@@ -379,7 +379,7 @@ csew$age[csew$age==998 | csew$age==999 ]<-NA
 ```
 
 
-**Task 5:** Get summary statistics for the variables **confx**, **fair** and **effectx**. Make note of any pattern or unusual value. A description of the variables can be found in this [user guide](http://doc.ukdataservice.ac.uk/doc/7911/mrdoc/pdf/7911_csew_2013-14_teaching_dataset_user_guide.pdf)
+**Task 5:** Get summary statistics for the variables **confx**, **fair** and **effectx**. Make note of any patterns or unusual values. A description of the variables can be found in this [user guide](http://doc.ukdataservice.ac.uk/doc/7911/mrdoc/pdf/7911_csew_2013-14_teaching_dataset_user_guide.pdf)
 
 
 **Task 5.1** Write down a short description of the main statistics you've obtained
@@ -409,17 +409,17 @@ ggplot(data = csew) +
   geom_histogram(mapping = aes(x=age), binwidth = 0.5, na.rm = TRUE)
 ```
 
-Both bar chart and histograms can be used to detect outliers and unusual patterns of the data. 
+Both bar charts and histograms can be used to detect outliers and unusual patterns of the data. 
 
-**Task 6:** Visually explore the variables that we have used in the previous task. Make note of any unusual patter that you can find.
+**Task 6:** Visually explore the variables that we have used in the previous task. Make a note of any unusual patterns that you can find.
 
 
 
 ## 4.3. Association between variables
 
-More insights can be gained when looking at relationships between variables. This can be done in two main ways: using numerical representation of this association and visual representations.
+More insight can be gained when looking at relationships between variables. This can be done in two main ways: using numerical representation of this association and visual representations.
 
-### Associations using "crosstab" or "contingency" tables
+### Associations using "crosstabs" or "contingency" tables
 
 For categorical data we can use contingency tables (also called crosstabs)
 
@@ -455,10 +455,10 @@ Now we need to focus on our variable of interest (outcome usually represented as
 
 Here we will be looking at the associations between confidence in the effectiveness of Criminal Justice System (effectx) and other individual characteristics of the respondents.
 
-**Two continous variables**
+**Two continuous variables**
 
 
--Scatter plots: For looking at the relationship between two continuous variables. This is useful to assess co-variation
+-Scatter plots: For looking at the relationship between two continuous variables. This is useful to assess co-variation.
 
 ```{r}
 
@@ -480,7 +480,7 @@ csew$age2<-as.numeric(csew$age)
 
 You can check that we now got rid of the warning.
 
-**Categorical and continous variables**
+**Categorical and continuous variables**
 
 - boxplot: ideal for detecting outliers. Here we obtain boxplots by groups
 
