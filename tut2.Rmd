@@ -21,14 +21,14 @@ In this practical you will be analysing a sample of the teaching dataset  of the
 
 # 1. Before we start
 
-## 1.1. Define a working directory
+### 1.1. Define a working directory
 
 You can use the directory  on University-owned machines, as it provides a stable drive to work on ("C:\Work"). If you're using your own machine, you can specify any folder you find convenient.
 
 Also note that you need to take your data and results with you and delete what you store on the C-drive after this session (if you are not using your own laptop).  
 
 
-## 1.2. Open a new Script
+### 1.2. Open a new Script
 
 First, open a new script in R studio and save it in your working directory, so you will be able to access this script at a later time if you want to revise or modify a code.  
 
@@ -37,11 +37,11 @@ In R Studio:
 Go to File... New File.... R script
   
 
-## 1.3. Load the packages
+### 1.3. Load the packages
 
 Remember to load the packages. We will be using `tidyverse` and `haven`
 
-```{r}
+```{r, message=FALSE}
 
 library(haven)
 library(tidyverse)
@@ -66,16 +66,17 @@ csew <- read_dta("CSEW/UKDA-7911-stata/stata/stata11/csew1314_teaching_eul2.dta"
 ```
 
 ```{r, eval=FALSE}
+# Do it yourself
 
-csew<-read_dta(".dta") 
+ 
 
 ```
 
 
 
-# 3. Data exploration
+# 3. Exploratory Data Analysis
 
-## **3.1 Dataset exploration**
+## 3.1 Dataset exploration
 
 **Task 1**: Inspect the dataset, use the function View()
 
@@ -89,9 +90,9 @@ You can also use the function `head()` that shows you the first 6 rows of the da
 
 There is also an antithesis function to `head()` called `tail()`. Can you guess what does that function do?   
 
-(**Hint**: you can run the code in the console and see it by yourself, or a wuick search in google may also help.)
+(**Hint**: you can run the code in the console and see it by yourself, or a quick search in google may also help.)
 
-```{r, echo=FALSE}
+```{r, eval=FALSE}
 head (csew)
 ```
 
@@ -102,10 +103,10 @@ Sadly, this is not always the case with data from different sources, in those ca
 Now that we got the data in the console, let's start with our data exploration:
 
 
-*Task 1.1* How many observations does the data have?____________
+**Task 1.1** How many observations does the data have?____________
 
 
-*Task 1.2* How many variables?______________
+**Task 1.2** How many variables?______________
 
 
 
@@ -114,7 +115,7 @@ Another function used to get a "glimpse" at your data is using the function `gli
 
 
 
-```{r, echo=FALSE}
+```{r, eval=FALSE}
 
 glimpse(csew)
 
@@ -126,7 +127,7 @@ Note the data type of almost all variables is `<dbl+lbl>`.  These are labelled v
 
 
 
-##**3.2 Variable exploration**  
+##3.2 Variable exploration 
 
 
 Let's use another function to have a closer look, this time at the variables. Let's use this with the variable 'sex'
@@ -156,14 +157,14 @@ Now that we have had a look at what variables we have, we need to start looking 
 - Exploring some relationships and patterns
 - Checking for missing cases
 
-## **Univariate analysis**
+## 4.1. Univariate analysis
 
 
 We can use a series of descriptive statistics and graphs to help us to undertand and make sense of the data.
 
 Univariate exploration is when we look at the characteristics of each variable of interest independently. 
 
-###**Univariate Descriptive statistic for categorical (factor) data**
+### Univariate Descriptive statistic for categorical (factor) data
 
 
 Let's see what happens when we ask for a frequency table
@@ -192,14 +193,16 @@ table(csew$sexf)
 Here we created a new variable with the suffix "f" (for factor). 
 
 
-*Task 3:* Convert the following variables into factor using the example code before.  
+**Task 3:** Convert the following variables into factor using the example code before.  
 
 - nation: adult respondent nationality
 - educat3: respondent education (5 categories)
 - ethgrp5a: ethnic group
-- bcsvictim: Experience of any crime in the previous 12 months
+- bcsvictim: Experience of any crime in the previous 12 months  
+    
+    
 
-**Missing values**
+### Missing values
 
 
 In R missing values are identified as NA.  
@@ -210,7 +213,6 @@ Now inspect whether there are missing values in our variables
 ```{r, echo=FALSE}
 
 csew$nationf<- as_factor(csew$nation)
-class(csew$nationf)
 
 ```
 
@@ -248,14 +250,15 @@ table(csew$nationf)
 
 ```
 
-*Task 4:* Check for missing values in the following variables and deal with them accordingly.  
+**Task 4:** Check for missing values in the following variables and deal with them accordingly:
 
 - educat3: respondent education (5 categories)
 - ethgrp5a: ethnic group
 - bcsvictim: Experience of any crime in the previous 12 months
 
 
-###Univariate Descriptive statistic for continuous (numeric) data
+
+### Univariate Descriptive statistic for continuous (numeric) data
 
 We can get summaries of the main statistics using the base function `summary()`. This function gives us the minimum and maximun values, the mean, median and the quartiles.   
 
@@ -376,19 +379,19 @@ csew$age[csew$age==998 | csew$age==999 ]<-NA
 ```
 
 
-*Task 5:* Get summary statistics for the variables **confx**, **fair** and **effectx**. Make note of any pattern or unusual value. A description of the variables can be found in this [user guide](http://doc.ukdataservice.ac.uk/doc/7911/mrdoc/pdf/7911_csew_2013-14_teaching_dataset_user_guide.pdf)
+**Task 5:** Get summary statistics for the variables **confx**, **fair** and **effectx**. Make note of any pattern or unusual value. A description of the variables can be found in this [user guide](http://doc.ukdataservice.ac.uk/doc/7911/mrdoc/pdf/7911_csew_2013-14_teaching_dataset_user_guide.pdf)
 
 
-*Task 5.1* Write down a short description of the main statistics you've obtained
-
-
-
-*Task 5.2* Is there any unusual value in the variables you have analysed?
+**Task 5.1** Write down a short description of the main statistics you've obtained
 
 
 
+**Task 5.2** Is there any unusual value in the variables you have analysed?
 
-## Visual exploration
+
+
+
+## 4.2. Visual exploration
 
 We can use a combination of bar plots, histograms, boxplots and scatterplots as the basis for our data exploration
 
@@ -408,25 +411,28 @@ ggplot(data = csew) +
 
 Both bar chart and histograms can be used to detect outliers and unusual patterns of the data. 
 
-*Task 6:* Visually explore the variables that we have used in the previous task. Make note of any unusual patter that you can find.
+**Task 6:** Visually explore the variables that we have used in the previous task. Make note of any unusual patter that you can find.
 
 
 
-## Association between variables
+## 4.3. Association between variables
 
-More insights can be gained when lookig at relationships between variables. This can be done in two main ways: using numerical representation of this association and visual representations
+More insights can be gained when lookig at relationships between variables. This can be done in two main ways: using numerical representation of this association and visual representations.
 
-**Associations using "crosstab" or "contingency" tables**
+### Associations using "crosstab" or "contingency" tables
 
 For categorical data we can use contingency tables (also called crosstabs)
 
 Here we will be using a new package called `janitor`.
 
 
-```{r}
+```{r, message=FALSE}
 #install.packages("janitor") 
 library(janitor)
 
+```
+
+```{r}
 csew %>%
   tabyl(sexf, nationf, show_na = FALSE) %>% #excludes NA values from the table
   adorn_percentages("row") %>% # takes row percentage
@@ -438,14 +444,18 @@ csew %>%
 
 
 
-*Task 7:* Explore the relationship between victim of crime and sex, ethnic group, nationality and educational level. Make notes of your findings
+**Task 7:** Explore the relationship between victim of crime and sex, ethnic group, nationality and educational level. Make notes of your findings
 
 
-** Looking at association through visualisations**
+
+
+### Looking at association through visualisations
 
 Now we need to focus on our variable of interest (outcome usually represented as the 'y' variable) and its association with other explanatory variables (x variables).
 
-** Two continous variables**
+Here we will be looking at the associations between confidence in the effectivness of Criminal Justice System (effectx) and other individual characteristics of the respondents.
+
+**Two continous variables**
 
 
 -Scatter plots: For looking at the relationship between two continous variables. This is usuful to assess co-variation
@@ -470,7 +480,7 @@ csew$age2<-as.numeric(csew$age)
 
 You can check that we now got rid of the warning.
 
-** Categorical and continous variables**
+**Categorical and continous variables**
 
 - boxplot: ideal for detecting outliers. Here we obtain boxplots by groups
 
@@ -487,8 +497,23 @@ ggplot(data = csew, mapping = aes(x = sexf, y = effectx)) +
 ```
 
 
+**Task 8:** Explore the associations between effectivenesss in the Criminal Justice System and nationality, ethnic group, victim of crime
 
 
-**Note:** The package `haven` is great to import from other statistical packages into R. But working with labelled variables is not very convenient (this is a personal opinion!) so I usually try to convert the variables back to the standard base-package R format, which is factors for categorical and numeric for continuos variables.
+
+
+**Task 9:** After all the bivariate exploration that you have done. Have you found any difference in the perception of the effectiveness in the Criminal Justice System according to:
+
+- sex____________________________________________________________
+_________________________________________________________________
+- ethnic group: _________________________________________________
+_________________________________________________________________
+- Victims: ______________________________________________________
+_________________________________________________________________
+
+
+**Task 10:** Can you think in any hypothesis that can help us to understand the differences in the perception of how effective the Criminal Justice System is? 
+
+
 
 
