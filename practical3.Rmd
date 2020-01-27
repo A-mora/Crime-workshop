@@ -17,3 +17,38 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+In the last session we used exploratory data analysis to make sense and understand the data that we have. This is a fundamental step in any data analysis process, it allow us to know the data, find errors, patterns, etc. It also help us to understand what can and can't do with the data we have. 
+
+We looked at bivariate association between variables, which help us to make us an idea of the relationship between a set of two variables. This is powerful, but rather limited in terms of inferencewe can make regarding the association between variables. 
+
+It is very unusual, specially in the social sciences, that a response variable will only depend on a single explanatory variable. Usually, we have several variables that affect our outcome variable at the same time, for those case we use multiple linear regression.
+
+In this tutorial we will give you a practical introduction to multiple linear regression. It does not intend to replace a formal theoretical explanation of this data analysis techique, but rather we will only scractch the surface. Hopefully this will also spark some interest (and why not joy) in you.
+
+
+We will also discusse the underlying assumption of Multiple linear regression and the interpretation of the results
+
+# Multiple Linear Regression
+
+MLR looks at the **linear** association of between a continuous dependent variable (also known as "outcome") $Y$ and a set of explanatory variables (also known as "predictors") $x_1, x_2, x_3, x_n$. In this tutorial we will explore the association between our dependent variable $Y$ the perception of the effectiveness of the Criminal Justice System and a set of explanatory variables $X_i$ age, whether victim of a crime, sex.
+
+You will normally find a equation similar to this one:
+
+$
+
+
+
+```{r, echo=FALSE}
+
+
+
+```
+
+
+
+
+
+
+
+
+
