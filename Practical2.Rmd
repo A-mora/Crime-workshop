@@ -1,6 +1,6 @@
 ---
 title: "Exploratory Data Analysis using the Crime Survey for England and Wales"
-author: "Ana Morales"
+author: "Ana Morales-Gomez"
 date: "`r Sys.Date()`"
 fontsize: 12pt
 output: 
@@ -56,7 +56,7 @@ As a first step in a research project we need to start with a purpose:
 
 # 2. Import the data into R
 
-Import the dataset called hse_data.dta into the console using your desired method (code or point and click). This dataset can only be imported if you have loaded the package `haven`. 
+Import the dataset called crime_survey.dta into the console using your desired method (code or point and click). This dataset can only be imported if you have loaded the package `haven`. 
 
 ```{r, echo=FALSE}
 setwd("C:/Users/Amanda/Desktop/anita/Crime-workshop")
@@ -86,17 +86,17 @@ View(csew)
 
 ```
 
-You can also use the function `head()` that shows you the first 6 rows of the data set, this function is usefull to have a look at the data within the console, specially when you havelarge datasets.
+You can also use the function `head()` that shows you the first 6 rows of the data set, this function is useful to have a look at the data within the console, specially when you have large datasets.
 
-There is also an antithesis function to `head()` called `tail()`. Can you guess what does that function do?   
+There is also an antithesis function to `head()` called `tail()`. Can you guess what that function does?   
 
-(**Hint**: you can run the code in the console and see it by yourself, or a quick search in google may also help.)
+(**Hint**: you can run the code in the console and see it by yourself, or a quick search in Google may also help.)
 
 ```{r, eval=FALSE}
 head (csew)
 ```
 
-Data obtained from the UK Data Service always came with a wealth of resources and user guides that help us to understand the data, so I would always encourgae you to check the documentation associated with the data used.These documentation also includes information about the sample, the questionnaire, the variables availables and how to use them.   
+Data obtained from the UK Data Service always come with a wealth of resources and user guides that help us to understand the data, so I would always encourage you to check the documentation associated with the data used.This documentation also includes information about the sample, the questionnaire, the variables available and how to use them.   
 
 Sadly, this is not always the case with data from different sources, in those cases the initial exploration of the data is probably our main source of information about the data itself.
 
@@ -160,7 +160,7 @@ Now that we have had a look at what variables we have, we need to start looking 
 ## 4.1. Univariate analysis
 
 
-We can use a series of descriptive statistics and graphs to help us to undertand and make sense of the data.
+We can use a series of descriptive statistics and graphs to help us to understand and make sense of the data.
 
 Univariate exploration is when we look at the characteristics of each variable of interest independently. 
 
@@ -174,12 +174,12 @@ Let's see what happens when we ask for a frequency table
 table(csew$sex)
 ```
 
-Right now, the variable does not contain any visible label that help us to identify each category of response, although we know the underlying values of each label thanks to the `attribute` function.
+Right now, the variable does not contain any visible labels that help us to identify each category of response, although we know the underlying values of each label thanks to the `attribute` function.
 
 This is one of the inconveniences of working with data with labels in R, but it is good for you to know what to do in this case.
 
 
-Although we can use the data as it is, I prefer to see the values of the variables, so we are going to change the class of some varibles to make them easier to analyse.
+Although we can use the data as it is, I prefer to see the values of the variables, so we are going to change the class of some variables to make them easier to analyse.
 
 
 We can use the function `as_factor()` from the package **haven** to convert the variable into a factor variable (equivalent to categorical variable). Copy the following code in your console.  
@@ -225,13 +225,13 @@ sum(is.na(csew$nationf))
 
 ```
 
-The function `is.na` is a logical function which looks at each observation and evaluates whether it is a valid case or a missing case. It will show a series of values `TRUE` for those observation that are missing and `FALSE` for valid cases (is.na = FALSE means that the cases are valid).
+The function `is.na` is a logical function which looks at each observation and evaluates whether it is a valid case or a missing case. It will show a series of values `TRUE` for those observations that are missing and `FALSE` for valid cases (is.na = FALSE means that the cases are valid).
 
 It is a good function to explore missingness, but it is not very practical on its own (as you could see in the example) that is why it is often used along other statistics.
 
-I used the statistc `sum` which will add all the `TRUE` values of `is.na` so the result will be the number of NA (missing cases) for a particular variable.
+I used the statistic `sum` which will add all the `TRUE` values of `is.na` so the result will be the number of NA (missing cases) for a particular variable.
 
-The data shows that there are no missing values, but we can infer that the values 8 and 9 can be classifyed as missing cases, so we recode them as missing
+The data shows that there are no missing values, but we can infer that the values 8 and 9 can be classified as missing cases, so we recode them as missing
 
 ```{r}
 csew$nationf<- recode(csew$nationf, "Refused" = "NA", "Don't know" = "NA")
@@ -240,7 +240,7 @@ table(csew$nationf)
 
 ```
 
-We have succesfully recode those values as missing, now we need to tell R Studio to treat those values as missing too
+We have successfully recoded those values as missing, now we need to tell R Studio to treat those values as missing too
 
 ```{r}
 csew$nationf<- na_if(csew$nationf, "NA")
@@ -260,7 +260,7 @@ table(csew$nationf)
 
 ### Univariate Descriptive statistic for continuous (numeric) data
 
-We can get summaries of the main statistics using the base function `summary()`. This function gives us the minimum and maximun values, the mean, median and the quartiles.   
+We can get summaries of the main statistics using the base function `summary()`. This function gives us the minimum and maximum values, the mean, median and the quartiles.   
 
 It is really useful to check for extreme values. Let's have a go
 
@@ -269,7 +269,7 @@ It is really useful to check for extreme values. Let's have a go
 summary(csew$age)
 ```
 
-`summary()` does not gives any measure of the spread of the, we can use other functions available in base R for that `sd()` for standard deviation.
+`summary()` does not give any measure of the spread of the data, we can use other functions available in base R for that `sd()` for standard deviation.
 
 ```{r}
 # Standard deviation
@@ -280,7 +280,7 @@ sd(csew$age)
 so far we have used two different functions of base R for exploratory data analysis. We can obtain the same statistics and more using a combination of different function from the package `tidyverse` taking advantage of the `%>%` (pipe) operator from the package **magrittr** which is fully implemented in tidyverse, so there is no need to install anything else.
 
 
-I'm a firmer believer (although I made be wrong) that the best way to learn is putting into practice, so this is a perfect opportunity to put `%>%` into practice. (You can check your notes of tutorial 1 for more details on how to use them).
+I'm a firmer believer (although I may be wrong) that the best way to learn is putting into practice, so this is a perfect opportunity to put `%>%` into practice. (You can check your notes of tutorial 1 for more details on how to use them).
 
 Let's start with the `summarise` function from the package `dplyr` (also part of tidyverse) This function allows us to create summary statistic of our variables in one single code
 
@@ -294,7 +294,7 @@ csew %>%
 
 ```
 
-That was good but not very impressive, is it? We can add more function to that code and ask for more:  
+That was good but not very impressive, was it? We can add more functions to that code and ask for more:  
 
 ```{r}
 
@@ -307,7 +307,7 @@ csew %>%
 
 ```
 
-One of the advantages of using `%>%` is that we can add more functions to our code as a set of instructions. In the exaple below, I added the function `filter()` of the package `dplyr` to exclude all missing cases from the analysis.  
+One of the advantages of using `%>%` is that we can add more functions to our code as a set of instructions. In the example below, I added the function `filter()` of the package `dplyr` to exclude all missing cases from the analysis.  
 
 
 The function `is.na()` (is missing?) will select all missing cases, but when used along the `!` it means totally the opposite, so in this code this stand for **filter all the cases of variable age that *are not* missing**
@@ -327,8 +327,8 @@ csew %>%
 We can even add more variables! but for that we might need another function and the chance to use more pipes %>%.
 
 - [select](https://dplyr.tidyverse.org/reference/select.html): This function allows to select specific variable from the datasets.  
-- [summarise_all](https://dplyr.tidyverse.org/reference/summarise_all.html): allow to apply the same transformation to multiple variables
-- `list`: used to make a list of functions to apply, in this example, mean and sd
+- [summarise_all](https://dplyr.tidyverse.org/reference/summarise_all.html): allows to apply the same transformation to multiple variables
+- [list](https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/list): used to make a list of functions to apply, in this example, mean and sd
 
 
 ```{r}
@@ -337,7 +337,7 @@ csew %>%
   summarise_all(list(mean= mean, sd= sd, median = median), na.rm = TRUE)
 
 ```
-What can we said about age?  
+What can we say about age?  
 
 The distribution of the variable age seems reasonable, the mean and the median are very similar. 
 
@@ -345,17 +345,17 @@ The standard deviation shows how spread the data are. A standard deviation of 57
 
 We also saw that the maximum value for age is **999**, which is clearly a number out of range; Nobody can live for 999 years! This is probably the reason why the standard deviation is so high, **we clearly need further exploration of this unusual value**
 
-In certain cases the maximun values can be less obvious, so it would be difficult to determine whether there are outliers or data errors, that is why we need to complement this intial checkings with visual exploration.
+In certain cases the maximum values can be less obvious, so it would be difficult to determine whether there are outliers or data errors, that is why we need to complement these initial checks with visual exploration.
 
 **Diagnostic, critical points regarding age**
 
 - high standard deviation
-- Implauible values (errror?, missings?, outliers?)
+- Implausible values (error?, missing?, outliers?)
 
 **Actions**
 
 - both problems might be related
-- check 999 values and deal with them accordingle
+- check 999 values and deal with them accordingly
 - check if SD changes after 999 values are took into account
 
 ```{r}
@@ -364,13 +364,13 @@ attributes(csew$age)
 
 ```
 
-using the fucntion `attributes()` we now know  
+using the function `attributes()` we now know  
 
-- age is formated as "%8.0g" which is a way of storing numeric data in Stata. 
-- age is a "haven_llabelled" variables, which means there are certaing values with labels
-- The values and labels 998 and 999 are for "refused" and "don't know" respectivelly.
+- age is formatted as "%8.0g" which is a way of storing numeric data in Stata. 
+- age is a "haven_labelled" variables, which means there are certain values with labels
+- The values and labels 998 and 999 are for "refused" and "don't know" respectively.
 
-998 and 999 can be classifyed as missing cases (unless you are interested in knowing the patterns of non-response). So we can easily solve that problem.
+998 and 999 can be classified as missing cases (unless you are interested in knowing the patterns of non-response). So we can easily solve that problem.
 
 
 ```{r}
@@ -393,7 +393,7 @@ csew$age[csew$age==998 | csew$age==999 ]<-NA
 
 ## 4.2. Visual exploration
 
-We can use a combination of bar plots, histograms, boxplots and scatterplots as the basis for our data exploration
+We can use a combination of bar plots, histograms, boxplots and scatter plots as the basis for our data exploration
 
 **bar plots of categorical data**
 ```{r}
@@ -417,7 +417,7 @@ Both bar chart and histograms can be used to detect outliers and unusual pattern
 
 ## 4.3. Association between variables
 
-More insights can be gained when lookig at relationships between variables. This can be done in two main ways: using numerical representation of this association and visual representations.
+More insights can be gained when looking at relationships between variables. This can be done in two main ways: using numerical representation of this association and visual representations.
 
 ### Associations using "crosstab" or "contingency" tables
 
@@ -453,12 +453,12 @@ csew %>%
 
 Now we need to focus on our variable of interest (outcome usually represented as the 'y' variable) and its association with other explanatory variables (x variables).
 
-Here we will be looking at the associations between confidence in the effectivness of Criminal Justice System (effectx) and other individual characteristics of the respondents.
+Here we will be looking at the associations between confidence in the effectiveness of Criminal Justice System (effectx) and other individual characteristics of the respondents.
 
 **Two continous variables**
 
 
--Scatter plots: For looking at the relationship between two continous variables. This is usuful to assess co-variation
+-Scatter plots: For looking at the relationship between two continuous variables. This is useful to assess co-variation
 
 ```{r}
 
@@ -497,7 +497,7 @@ ggplot(data = csew, mapping = aes(x = sexf, y = effectx)) +
 ```
 
 
-**Task 8:** Explore the associations between effectivenesss in the Criminal Justice System and nationality, ethnic group, victim of crime
+**Task 8:** Explore the associations between effectiveness in the Criminal Justice System and nationality, ethnic group, victim of crime
 
 
 
