@@ -16,6 +16,3 @@ The purpose of this tutorial is to give an overview of R and R studio and how to
 
 The purpose of this tutorial is to get insight of real-world data using Explotary Data Analysis. 
 
-3. Advanced?
-
-The purpose of this tutorial is to briefly analyse the data using regression methods. This will allow participant to understand the complexity of data and how different statistical methods can help us to understand the underlying...
