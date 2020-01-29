@@ -6,7 +6,7 @@ fontsize: 12pt
 output: 
   html_document:
     highlighter: null
-    theme: "flatly"
+    #theme: "flatly"
     code_download: TRUE
     toc: TRUE
     toc_float: TRUE
