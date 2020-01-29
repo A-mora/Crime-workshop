@@ -6,8 +6,8 @@ fontsize: 12pt
 output: 
   html_document:
     highlighter: null
-    #theme: "yeti"
-    theme: "flatly"
+    theme: "cosmo"
+    #theme: "flatly"
     code_download: TRUE
     toc: TRUE
     toc_float: TRUE
