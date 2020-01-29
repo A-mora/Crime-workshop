@@ -515,5 +515,14 @@ _________________________________________________________________
 **Task 10:** Can you think in any hypothesis that can help us to understand the differences in the perception of how effective the Criminal Justice System is? 
 
 
+# 5.  Saving data
+
+We can save the data we have been using, we can select different export methods, depending on the format in which we want our data to be stored. Here we will save the changes that we have made to the "csew" dataset as R data. This means that we don't need to import it again (we still need to load it) to use in another R session.
+
+```{r}
+save(csew, file= "csew.RData")
+```
+
+
 
 
