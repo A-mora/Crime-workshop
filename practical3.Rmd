@@ -14,9 +14,7 @@ output:
     toc_depth: 2
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
+
 
 In the last session we used exploratory data analysis to make sense and understand the data that we have. This is a fundamental step in any data analysis process, it allow us to know the data, find errors, patterns, etc. It also help us to understand what can and can't do with the data we have. 
 
