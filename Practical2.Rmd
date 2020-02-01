@@ -1,12 +1,12 @@
 ---
 title: "Exploratory Data Analysis using the Crime Survey for England and Wales"
 author: "Ana Morales-Gomez"
-date: "`r Sys.Date()`"
+date: "03 - Feb -2020"
 fontsize: 12pt
 output: 
   html_document:
     highlighter: null
-    theme: "flatly"
+    theme: "cosmo"
     code_download: TRUE
     toc: TRUE
     toc_float: TRUE
