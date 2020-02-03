@@ -1,13 +1,12 @@
 ---
 title: "Understanding perception of the effectiveness of the Criminal Justice System in England and Wales"
 author: "Ana Morales"
-date: "`r Sys.Date()`"
+date: "04-Feb-2020"
 fontsize: 12pt
 output: 
   html_document:
     highlighter: null
     theme: "cosmo"
-    #theme: "flatly"
     code_download: TRUE
     toc: TRUE
     toc_float: TRUE
@@ -101,7 +100,7 @@ The association between effectx and age is positive, the value is 0.0086867. Thi
 This indicates that for each year of age the perception of the effectiveness in the CJS increase by 0.009. This might not seem a lot, but we have to consider the scale of the effectx variable (range from -3 to 2.2 approx.). 
 
 ```{r, echo=FALSE, fig.align= "center", out.width="300px", fig.cap="Credits: [Allison Horst](https://github.com/allisonhorst/stats-illustrations)", message=F, warning=F}
-knitr::include_graphics("images/dragons_continuous.png")
+knitr::include_graphics("dragons/dragons_continuous.png")
 ```
 
 
@@ -113,7 +112,7 @@ $\hat{y} = -0.44 + 0.009*16$
 $\hat{y} = -0.296$
 
 ```{r, echo=FALSE, fig.align= "center", out.width="300px", fig.cap="Credits: [Allison Horst](https://github.com/allisonhorst/stats-illustrations)", message=F, warning=F}
-knitr::include_graphics("images/dragon_predict_mlr.png")
+knitr::include_graphics("dragons/dragon_predict_mlr.png")
 ```
 
 
@@ -146,7 +145,7 @@ The interpretation is similar to the SLR, the only difference here is the inclus
 The estimated value ("estimate" in the R output) will tell you how much or less (depending on the sign) being a victim a crime affects the perception of the effectiveness of the CJS.
 
 ```{r, echo=FALSE, fig.align= "center", out.width="300px", fig.cap="Credits: [Allison Horst](https://github.com/allisonhorst/stats-illustrations)", message=F, warning=F}
-knitr::include_graphics("images/dragon_regression.png")
+knitr::include_graphics("dragons/dragon_regression.png")
 ```
 
 
@@ -174,7 +173,7 @@ Now add other predictors to the model and describe your results
 Residuals are the difference between the observed values of $y$ for each case in our data minus the predicted or expected value of $\hat{y}$, the one we obtained with our model. If the model is good, these differences will be minimal and we can say that "our model fits the data well". Unfortunately, most of the time, this is not the case.
 
 ```{r, echo=FALSE, fig.align= "center", out.width="300px", fig.cap="Credits: [Allison Horst](https://github.com/allisonhorst/stats-illustrations)", message=F, warning=F}
-knitr::include_graphics("images/dragon_residual.png")
+knitr::include_graphics("dragons/dragon_residual.png")
 ```
 
 
@@ -195,7 +194,7 @@ How do we know if our model is good enough for our research question? besides ou
 A key assumption in linear regression is that our residuals are normally distributed. This means roughly that whatever is left unexplained by our model could be thought of as random variation or "white noise".
 
 ```{r, echo=FALSE, fig.align= "center", out.width="300px", fig.cap="Credits: [Allison Horst](https://github.com/allisonhorst/stats-illustrations)", message=F, warning=F}
-knitr::include_graphics("images/dragon_residual_distribution.png")
+knitr::include_graphics("dragons/dragon_residual_distribution.png")
 ```
 
 There are formal statistical tests for this, but visual inspection of the residuals is usually the preferred method, since a non-normal distribution stands out very clearly.
